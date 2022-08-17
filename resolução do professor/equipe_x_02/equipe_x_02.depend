@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1660767348 source:c:\users\tampe\desktop\connect\equipe_x_02\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+
