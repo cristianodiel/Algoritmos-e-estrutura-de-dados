@@ -16,23 +16,21 @@ int main()
     char texto[100],textol[100];
     int i,j=0;
     printf("****Dislalia****\n");
-    printf("Informe um texto:\n");
+    printf("Informe um texto para repetir da forma como o Cebolinha diria:\n");
     gets(texto);
     fflush(stdin);
     //printf("%s",texto);
 
     for(i=0;i<=strlen(texto);i++){
-        if ((texto[i]=='r')&&(texto[i+1]!='r')){
-            j++;
-            if ((texto[i]=='r')&&(texto[i+1]!=' ')&&(texto[i+1]!='\n')&&(texto[i+1]!='\0')){
-                textol[j]='l';
-            }else{
-                textol[j]=texto[i];
-            }
-            j++;
+        if ((texto[i]=='r')&&(texto[i+1]=='r')){
+            j--;
+        }else if ((texto[i]=='r')&&(texto[i+1]!=' ')&&(texto[i+1]!='\n')&&(texto[i+1]!='\0')){
+            textol[i+j]='l';
+        }else{
+            textol[i+j]=texto[i];
         }
     }
-    printf("%s",textol);
+    printf("\n%s\n\n",textol);
 
     return 0;
 }
