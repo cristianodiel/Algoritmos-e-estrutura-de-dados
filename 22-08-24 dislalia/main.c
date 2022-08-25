@@ -24,7 +24,7 @@ int main()
     for(i=0;i<=strlen(texto);i++){
         if ((texto[i]=='r')&&(texto[i+1]=='r')){
             j--;
-        }else if ((texto[i]=='r')&&(texto[i+1]!=' ')&&(texto[i+1]!='\n')&&(texto[i+1]!='\0')){
+        }else if ((texto[i]=='r')&&(texto[i+1]>='a')&&(texto[i+1]<='z')&&texto[i+1]!='l'){
             textol[i+j]='l';
         }else{
             textol[i+j]=texto[i];
