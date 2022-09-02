@@ -5,11 +5,11 @@
 #define LIN 3 //numero de linhas de poltronas
 #define COL 4 //numero de colunas de poltronas
 
-typedef struct Poltrona {
+typedef struct Poltronas {
     int linha;
     int coluna;
     int status;//0=livre, 1=reservado, 2=comprado.
-}Poltrona;
+}Poltronas;
 
 typedef struct Coord {
     int linha;
@@ -18,9 +18,9 @@ typedef struct Coord {
 
 void menu();
 void mostrar_poltronas();
-void liberar_poltrona(Poltrona x);
-void reservar_poltrona(Coord x, Poltrona y[LIN][COL]);
-void comprar_poltrona(Poltrona x);
+Poltronas liberar_poltrona(Coord x, Poltronas y[LIN][COL]);
+Poltronas reservar_poltrona(Coord x, Poltronas y[LIN][COL]);
+Poltronas comprar_poltrona(Coord x, Poltronas y[LIN][COL]);
 Coord selecionar_poltrona(Coord x);
 
 
@@ -30,14 +30,14 @@ int main()
 {
     int opcao;
     Coord coordenada_poltrona;
-    Poltrona poltronas[LIN][COL];
+    Poltronas poltronas[LIN][COL];
 
     setlocale(LC_ALL, "Portuguese");
 
     //limpando reservas da sessão anterior
         for(int i=0;i<LIN;i++){
             for (int j=0;j<COL;j++){
-                liberar_poltrona(poltronas[i][j]);
+                liberar_poltrona(Coord x, Poltronas y[i][j]);
             }
         }
 
@@ -55,13 +55,13 @@ int main()
             case 2:{
             mostrar_poltronas();
             coordenada_poltrona=selecionar_poltrona(coordenada_poltrona);
-            comprar_poltrona(coordenada_poltrona.linha,coordenada_poltrona.coluna);//poltrona com as coordenadas de coord(coordenada_poltrona)
+            comprar_poltrona(coordenada_poltrona, poltronas);//poltrona com as coordenadas de coord(coordenada_poltrona)
             break;
             }
             case 3:{
             mostrar_poltronas();
             coordenada_poltrona=selecionar_poltrona(coordenada_poltrona);
-            cancelar_poltrona(coordenada_poltrona.linha,coordenada_poltrona.coluna);//poltrona com as coordenadas de coord(coordenada_poltrona)
+            liberar_poltrona(coordenada_poltrona, poltronas);//poltrona com as coordenadas de coord(coordenada_poltrona)
             break;
             }
             case 4:{
@@ -83,38 +83,38 @@ void menu(){
     printf("3 - Cancelar uma reserva.\n");
     printf("4 - Sair.\n");
     printf("********************************\n");
-return 0;
+//return 0;
 }
 
 //funcao para ligar a coordenada da poltrona com a poltrona
-void ligar_poltrona(Coord x, Poltrona y[LIN][COL]){
-    y[i]=x.linha;
-    y.[j]=x.coluna;
+Poltronas ligar_poltrona(Coord x, Poltronas y[LIN][COL]){
+    y[x.linha][x.coluna];
+
 }
 
 //funcao limpar reserva e compra de poltrona//juntar as 3 funcoes (limpar, reservar e comprar) em uma mesma funcao alterar
-void liberar_poltrona(Poltrona x){
-    x.status=0;
-    return 0;
+Poltronas liberar_poltrona(Coord x, Poltronas y[LIN][COL]){
+    y[x.linha][x.coluna].status=0;
+    return y;
 }
 
 //funcao reservar poltrona
-void reservar_poltrona(Coord x, Poltrona y[LIN][COL]){
-    x.status=1;
-    return 0;//arrumar
+Poltronas reservar_poltrona(Coord x, Poltronas y[LIN][COL]){
+    y[x.linha][x.coluna].status=1;
+    return y;//arrumar
 }
 
 //funcao comprar poltrona
-void comprar_poltrona(Poltrona x){
-    x.status=2;
-    return 0;
+Poltronas comprar_poltrona(Coord x, Poltronas y[LIN][COL]){
+    y[x.linha][x.coluna].status=2;
+    return y;
 }
 
 //funcao selecionar poltrona
 Coord selecionar_poltrona(Coord x){
-    printf("Linha da poltrona:")
+    printf("Linha da poltrona:");
     scanf("%d\n",x.linha);
-    printf("Coluna da poltrona:")
+    printf("Coluna da poltrona:");
     scanf("%d\n",x.coluna);
     return x;
 }
@@ -127,7 +127,7 @@ void mostrar_poltronas(){
         }
         printf("\n");
     }
-    return 0;
+//    return 0;
 }
 
 //funcao selecionar poltronas
