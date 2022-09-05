@@ -60,7 +60,7 @@ int main()
             case 3:{
             mostrar_poltronas();
             coordenada=selecionar_poltrona(coordenada);
-            liberar_poltrona(poltronas,coordenada);//poltrona com as coordenadas de coord(coordenada_poltrona)
+            liberar_poltrona(poltronas,coordenada.linha,coordenada.coluna);//poltrona com as coordenadas de coord(coordenada_poltrona)
             break;
             }
             case 4:{
@@ -99,18 +99,18 @@ void liberar_poltrona(Poltrona y[LIN][COL],int i,int j){
 
 //funcao reservar poltrona
 void reservar_poltrona(Poltrona y[LIN][COL],Coord x){
-    y[x.i][x.j].status=1;
+    y[x.linha][x.coluna].status=1;
     return y;//arrumar
 }
 
 //funcao comprar poltrona
 void comprar_poltrona(Poltrona y[LIN][COL],Coord x){
-    y[x.i][x.j].status=2;
+    y[x.linha][x.coluna].status=2;
     return y;
 }
 
 //funcao selecionar poltrona
-void selecionar_poltrona(Coord x){
+Coord selecionar_poltrona(Coord x){
     printf("Linha da poltrona:");
     scanf("%d\n",x.linha);
     printf("Coluna da poltrona:");
