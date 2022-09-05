@@ -5,11 +5,10 @@
 #define LIN 3 //numero de linhas de poltronas
 #define COL 4 //numero de colunas de poltronas
 
-typedef struct Poltronas {
-    int linha;
-    int coluna;
+typedef struct Poltrona {
+    int nome;//nome do comprador
     int status;//0=livre, 1=reservado, 2=comprado.
-}Poltronas;
+}Poltrona;
 
 typedef struct Coord {
     int linha;
@@ -18,9 +17,9 @@ typedef struct Coord {
 
 void menu();
 void mostrar_poltronas();
-Poltronas liberar_poltrona(Coord x, Poltronas y[LIN][COL]);
-Poltronas reservar_poltrona(Coord x, Poltronas y[LIN][COL]);
-Poltronas comprar_poltrona(Coord x, Poltronas y[LIN][COL]);
+void liberar_poltrona(Poltrona y[LIN][COL],int i,int j);
+void reservar_poltrona(Poltrona y[LIN][COL],Coord x);
+void comprar_poltrona(Poltrona y[LIN][COL],Coord x);
 Coord selecionar_poltrona(Coord x);
 
 
@@ -29,15 +28,15 @@ Coord selecionar_poltrona(Coord x);
 int main()
 {
     int opcao;
-    Coord coordenada_poltrona;
-    Poltronas poltronas[LIN][COL];
+    Coord coordenada;
+    Poltrona poltronas[LIN][COL];
 
     setlocale(LC_ALL, "Portuguese");
 
     //limpando reservas da sessão anterior
         for(int i=0;i<LIN;i++){
             for (int j=0;j<COL;j++){
-                liberar_poltrona(Coord x, Poltronas y[i][j]);
+                liberar_poltrona(poltronas,i,j);
             }
         }
 
@@ -48,20 +47,20 @@ int main()
         switch (opcao){
             case 1:{
             mostrar_poltronas();
-            coordenada_poltrona=selecionar_poltrona(coordenada_poltrona);
-            reservar_poltrona(coordenada_poltrona, poltronas);//poltrona com as coordenadas de coord(coordenada_poltrona)
+            coordenada=selecionar_poltrona(coordenada);
+            reservar_poltrona(poltronas,coordenada);//poltrona com as coordenadas de coord(coordenada_poltrona)
             break;
             }
             case 2:{
             mostrar_poltronas();
-            coordenada_poltrona=selecionar_poltrona(coordenada_poltrona);
-            comprar_poltrona(coordenada_poltrona, poltronas);//poltrona com as coordenadas de coord(coordenada_poltrona)
+            coordenada=selecionar_poltrona(coordenada);
+            comprar_poltrona(poltronas,coordenada);//poltrona com as coordenadas de coord(coordenada_poltrona)
             break;
             }
             case 3:{
             mostrar_poltronas();
-            coordenada_poltrona=selecionar_poltrona(coordenada_poltrona);
-            liberar_poltrona(coordenada_poltrona, poltronas);//poltrona com as coordenadas de coord(coordenada_poltrona)
+            coordenada=selecionar_poltrona(coordenada);
+            liberar_poltrona(poltronas,coordenada);//poltrona com as coordenadas de coord(coordenada_poltrona)
             break;
             }
             case 4:{
@@ -86,32 +85,32 @@ void menu(){
 //return 0;
 }
 
-//funcao para ligar a coordenada da poltrona com a poltrona
-Poltronas ligar_poltrona(Coord x, Poltronas y[LIN][COL]){
+/*//funcao para ligar a coordenada da poltrona com a poltrona
+void ligar_poltrona(Poltrona y[LIN][COL]){
     y[x.linha][x.coluna];
 
-}
+}*/
 
 //funcao limpar reserva e compra de poltrona//juntar as 3 funcoes (limpar, reservar e comprar) em uma mesma funcao alterar
-Poltronas liberar_poltrona(Coord x, Poltronas y[LIN][COL]){
-    y[x.linha][x.coluna].status=0;
-    return y;
+void liberar_poltrona(Poltrona y[LIN][COL],int i,int j){
+    y[i][j].status=0;
+    //return y;
 }
 
 //funcao reservar poltrona
-Poltronas reservar_poltrona(Coord x, Poltronas y[LIN][COL]){
-    y[x.linha][x.coluna].status=1;
+void reservar_poltrona(Poltrona y[LIN][COL],Coord x){
+    y[x.i][x.j].status=1;
     return y;//arrumar
 }
 
 //funcao comprar poltrona
-Poltronas comprar_poltrona(Coord x, Poltronas y[LIN][COL]){
-    y[x.linha][x.coluna].status=2;
+void comprar_poltrona(Poltrona y[LIN][COL],Coord x){
+    y[x.i][x.j].status=2;
     return y;
 }
 
 //funcao selecionar poltrona
-Coord selecionar_poltrona(Coord x){
+void selecionar_poltrona(Coord x){
     printf("Linha da poltrona:");
     scanf("%d\n",x.linha);
     printf("Coluna da poltrona:");
