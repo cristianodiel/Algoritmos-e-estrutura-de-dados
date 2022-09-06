@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1662487160 source:c:\users\alunos\documents\cristiano\algoritmos-e-estrutura-de-dados\cores\main.c
+	<stdio.h>
+	<windows.h>
+
