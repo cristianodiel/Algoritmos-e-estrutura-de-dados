@@ -138,7 +138,7 @@ void mostrar_poltronas(Poltrona y[LIN][COL]){
                 SetConsoleTextAttribute(hConsole, 64);
                 printf("%c%d ",i+'A',j);
             }
-
+        SetConsoleTextAttribute(hConsole, 7);
         }
         printf("\n");
     }
