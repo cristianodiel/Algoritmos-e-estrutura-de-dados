@@ -6,7 +6,7 @@
 #define COL 4 //numero de colunas de poltronas
 
 typedef struct Poltrona {
-    int nome;//nome do comprador
+    char nome[40];//nome do comprador
     int status;//0=livre, 1=reservado, 2=comprado.
 }Poltrona;
 
@@ -85,6 +85,7 @@ void menu(){
     printf("3 - Cancelar uma reserva.\n");
     printf("4 - Sair.\n");
     printf("********************************\n");
+    printf("\nFaca sua escolha");
 //return 0;
 }
 
@@ -96,6 +97,9 @@ void liberar_poltrona(Poltrona y[LIN][COL],int i,int j){
 
 //funcao reservar poltrona
 Poltrona reservar_poltrona(Poltrona y[LIN][COL],Coord x){
+    printf("Informe seu nome:");
+    gets(y[x.linha][x.coluna].nome);
+    printf("nome: %s",y[x.linha][x.coluna].nome);
     y[x.linha][x.coluna].status=1;
     return y[x.linha][x.coluna];
 }
